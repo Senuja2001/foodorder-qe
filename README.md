@@ -1,3 +1,7 @@
-# foodorder-qe
+# FoodOrder - Quality Engineering Project
 
-An end-to-end Quality Engineering portfolio project featuring a food ordering system with manual testing, API testing, UI automation, database validation, and CI/CD
+An end-to-end Quality Engineering project for a food ordering and restaurant management system.
+
+## Project Status
+
+Currently in project planning and architecture phase.
