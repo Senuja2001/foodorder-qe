@@ -1,0 +1,4 @@
+com\foodorder\qe\tests\ProductTest.class
+com\foodorder\qe\base\BaseTest.class
+com\foodorder\qe\BaseSetupTest.class
+com\foodorder\qe\AppTest.class
