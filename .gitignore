@@ -1,8 +1,69 @@
-# Environment variables
+# Environment files and secrets
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+*secret*
+*secrets*
+*credential*
+*credentials*
+*token*
+*tokens*
 
-# Node modules
+# Postman local environments may contain JWTs or passwords
+api-testing/postman/environments/*.postman_environment.json
+!api-testing/postman/environments/*.example.postman_environment.json
+
+# Node / Newman / React
 node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+application/frontend/dist/
+application/frontend/.vite/
+application/frontend/.vite-temp/
 
-# Build files
-dist/
+# Maven / Java Selenium
+target/
+**/target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Generated reports
+reports/newman/*.json
+reports/newman/*.html
+reports/newman/*.xml
+reports/newman/*.log
+!reports/newman/.gitkeep
+ui-automation/**/surefire-reports/
+
+# IDE and editor files
+.idea/
+.vscode/*
+!.vscode/settings.json
+*.iml
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+*.bak
+*.old
+*.orig
+
+# Logs
+logs/
+*.log

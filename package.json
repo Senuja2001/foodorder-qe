@@ -1,0 +1,14 @@
+{
+  "name": "foodorder-qe-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Quality Engineering portfolio project for the FoodOrder application.",
+  "scripts": {
+    "test:api": "newman run ./api-testing/postman/collections/FoodOrder-QE-API-Test-Automation.postman_collection.json --environment ./api-testing/postman/environments/FoodOrder-QE.local.postman_environment.json --reporters cli,json --reporter-json-export ./reports/newman/newman-results.json",
+    "test:api:report": "newman run ./api-testing/postman/collections/FoodOrder-QE-API-Test-Automation.postman_collection.json --environment ./api-testing/postman/environments/FoodOrder-QE.local.postman_environment.json --reporters cli,json,htmlextra --reporter-json-export ./reports/newman/newman-results.json --reporter-htmlextra-export ./reports/newman/newman-report.html --reporter-htmlextra-title \"FoodOrder API Test Report\""
+  },
+  "devDependencies": {
+    "newman": "^6.2.1",
+    "newman-reporter-htmlextra": "^1.23.1"
+  }
+}

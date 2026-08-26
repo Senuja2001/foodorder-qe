@@ -190,6 +190,61 @@ router.post("/", authenticateToken, async (req, res) => {
   }
 });
 
+// GET logged-in user's order by ID
+router.get("/:id", authenticateToken, async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const orderResult = await pool.query(
+      `SELECT *
+       FROM orders
+       WHERE id = $1
+        AND user_id = $2`,
+      [id, req.user.id]
+    );
+
+    if (orderResult.rows.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found",
+      });
+    }
+
+    const itemsResult = await pool.query(
+      `SELECT
+        order_items.id,
+        order_items.order_id,
+        order_items.product_id,
+        products.name AS product_name,
+        order_items.quantity,
+        order_items.unit_price,
+        order_items.subtotal
+       FROM order_items
+       LEFT JOIN products
+        ON products.id = order_items.product_id
+       WHERE order_items.order_id = $1
+       ORDER BY order_items.id`,
+      [id]
+    );
+
+    res.status(200).json({
+      success: true,
+      message: "Order retrieved successfully",
+      data: {
+        ...orderResult.rows[0],
+        items: itemsResult.rows,
+      },
+    });
+  } catch (error) {
+    console.error("Get order by ID error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to retrieve order",
+    });
+  }
+});
+
 // GET ALL ORDERS - ADMIN ONLY
 router.get(
   "/admin/all",
