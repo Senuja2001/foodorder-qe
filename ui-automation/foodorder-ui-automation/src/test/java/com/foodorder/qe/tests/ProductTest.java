@@ -27,7 +27,7 @@ public class ProductTest extends BaseTest {
     public void verifyProductSearch() {
 
         WebElement searchInput = driver.findElement(
-                By.cssSelector("input[placeholder='Search']")
+                By.cssSelector("[data-testid='product-search']")
         );
 
                 searchInput.clear();

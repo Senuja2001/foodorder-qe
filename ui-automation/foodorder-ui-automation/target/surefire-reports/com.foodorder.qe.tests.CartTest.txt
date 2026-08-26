@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.foodorder.qe.tests.CartTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 25.66 s -- in com.foodorder.qe.tests.CartTest
