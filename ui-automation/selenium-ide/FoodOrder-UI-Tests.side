@@ -1,0 +1,92 @@
+{
+  "id": "425b4e43-99f1-4d1c-94f6-d00918d2222b",
+  "version": "2.0",
+  "name": "FoodOrder UI Tests",
+  "url": "http://localhost:5173",
+  "tests": [
+    {
+      "id": "324ad39d-093e-4b8f-aa0a-b8d6d8d0d101",
+      "name": "Products are displayed",
+      "commands": [
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014001", "comment": "", "command": "open", "target": "/", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014002", "comment": "", "command": "waitForElementVisible", "target": "css=[data-testid='product-grid']", "targets": [], "value": "10000" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014003", "comment": "", "command": "assertElementPresent", "target": "css=.product-card", "targets": [], "value": "" }
+      ]
+    },
+    {
+      "id": "324ad39d-093e-4b8f-aa0a-b8d6d8d0d102",
+      "name": "Add product to cart",
+      "commands": [
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014004", "comment": "", "command": "open", "target": "/", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014005", "comment": "", "command": "waitForElementVisible", "target": "css=[data-testid='product-grid']", "targets": [], "value": "10000" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014006", "comment": "", "command": "click", "target": "css=[data-testid^='add-product-']", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014007", "comment": "", "command": "assertText", "target": "css=[data-testid='cart-count']", "targets": [], "value": "1" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014008", "comment": "", "command": "assertElementPresent", "target": "css=[data-testid='cart-summary']", "targets": [], "value": "" }
+      ]
+    },
+    {
+      "id": "324ad39d-093e-4b8f-aa0a-b8d6d8d0d103",
+      "name": "Search returns Chicken products",
+      "commands": [
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014009", "comment": "", "command": "open", "target": "/", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014010", "comment": "", "command": "waitForElementVisible", "target": "css=[data-testid='product-search']", "targets": [], "value": "10000" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014011", "comment": "Firefox-compatible React input update", "command": "executeScript", "target": "var input=document.querySelector(\"[data-testid='product-search']\");var setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,\"value\").set;setter.call(input,\"Chicken\");input.dispatchEvent(new Event(\"input\",{bubbles:true}));", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014012", "comment": "", "command": "assertElementPresent", "target": "xpath=//div[contains(@class,'product-card')][contains(.,'Chicken')]", "targets": [], "value": "" }
+      ]
+    },
+    {
+      "id": "324ad39d-093e-4b8f-aa0a-b8d6d8d0d104",
+      "name": "Invalid search shows no results",
+      "commands": [
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014013", "comment": "", "command": "open", "target": "/", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014014", "comment": "", "command": "waitForElementVisible", "target": "css=[data-testid='product-search']", "targets": [], "value": "10000" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014015", "comment": "Firefox-compatible React input update", "command": "executeScript", "target": "var input=document.querySelector(\"[data-testid='product-search']\");var setter=Object.getOwnPropertyDescriptor(HTMLInputElement.prototype,\"value\").set;setter.call(input,\"NoSuchFood123\");input.dispatchEvent(new Event(\"input\",{bubbles:true}));", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014016", "comment": "", "command": "assertText", "target": "css=[data-testid='no-results']", "targets": [], "value": "No products found." }
+      ]
+    },
+    {
+      "id": "324ad39d-093e-4b8f-aa0a-b8d6d8d0d105",
+      "name": "Cart quantity can be increased and decreased",
+      "commands": [
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014017", "comment": "", "command": "open", "target": "/", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014018", "comment": "", "command": "waitForElementVisible", "target": "css=[data-testid='product-grid']", "targets": [], "value": "10000" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014019", "comment": "", "command": "click", "target": "css=[data-testid^='add-product-']", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014020", "comment": "", "command": "click", "target": "css=[data-testid^='increase-']", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014021", "comment": "", "command": "assertText", "target": "css=[data-testid^='quantity-']", "targets": [], "value": "2" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014022", "comment": "", "command": "click", "target": "css=[data-testid^='decrease-']", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014023", "comment": "", "command": "assertText", "target": "css=[data-testid^='quantity-']", "targets": [], "value": "1" }
+      ]
+    },
+    {
+      "id": "324ad39d-093e-4b8f-aa0a-b8d6d8d0d106",
+      "name": "Product can be removed from cart",
+      "commands": [
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014024", "comment": "", "command": "open", "target": "/", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014025", "comment": "", "command": "waitForElementVisible", "target": "css=[data-testid='product-grid']", "targets": [], "value": "10000" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014026", "comment": "", "command": "click", "target": "css=[data-testid^='add-product-']", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014027", "comment": "", "command": "assertElementPresent", "target": "css=[data-testid^='cart-item-']", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014028", "comment": "", "command": "click", "target": "css=[data-testid^='remove-']", "targets": [], "value": "" },
+        { "id": "71eb9a1c-7362-4db6-9e6c-1fdf0a014029", "comment": "", "command": "assertElementNotPresent", "target": "css=[data-testid='cart-summary']", "targets": [], "value": "" }
+      ]
+    }
+  ],
+  "suites": [
+    {
+      "id": "486f15e4-24a5-4718-adcf-201ef258c001",
+      "name": "FoodOrder UI Suite",
+      "persistSession": false,
+      "parallel": false,
+      "timeout": 300,
+      "tests": [
+        "324ad39d-093e-4b8f-aa0a-b8d6d8d0d101",
+        "324ad39d-093e-4b8f-aa0a-b8d6d8d0d102",
+        "324ad39d-093e-4b8f-aa0a-b8d6d8d0d103",
+        "324ad39d-093e-4b8f-aa0a-b8d6d8d0d104",
+        "324ad39d-093e-4b8f-aa0a-b8d6d8d0d105",
+        "324ad39d-093e-4b8f-aa0a-b8d6d8d0d106"
+      ]
+    }
+  ],
+  "urls": ["http://localhost:5173/"],
+  "plugins": []
+}
